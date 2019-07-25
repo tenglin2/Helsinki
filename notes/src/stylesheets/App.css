@@ -1,0 +1,18 @@
+.App {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	border: .2rem solid black;
+}
+
+.App > p {
+	background-color: green;
+	padding: .5rem;
+}
+
+.App > :first-child {
+	background-color: olivedrab;
+	margin-bottom: 2rem;
+}

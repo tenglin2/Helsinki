@@ -1,0 +1,32 @@
+:root {
+	font-size: 62.5%;
+	height: 100%;
+	border: .3rem dashed red;
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+body {
+	height: 100%;
+	border: .2rem dashed black;
+	box-sizing: border-box;
+	background-color: salmon;
+	padding: 2rem;
+	font-size: 2rem;
+}
+
+#root {
+	/* display: flex;
+	justify-content: center;
+  align-items: center; */
+	position: relative;
+	border: 2px solid black;
+	height: 100%;
+}
