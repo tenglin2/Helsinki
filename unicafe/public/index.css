@@ -1,0 +1,33 @@
+:root {
+	height: 100%;
+	font-size: 62.5%;
+	box-sizing: border-box;
+	border: .2rem dashed black;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+body {
+	height: 100%;
+	border: .2rem solid black;
+	background-color: sienna;
+	box-sizing: border-box;
+	padding: .5rem;
+	font-size: 2rem;
+}
+
+#root {
+	height: 100%;
+	width: 80%;
+	margin: 0 auto;
+	background-color: sandybrown;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
