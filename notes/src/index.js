@@ -6,6 +6,19 @@ import Total from './components/Total';
 import Button from './components/Button';
 import './stylesheets/App.css';
 
+import axios from 'axios';
+
+const promise = axios.get('http://localhost:3001/notes');
+
+promise.then((response) => {
+	console.log(response);
+});
+
+console.log(promise);
+
+const promise2 = axios.get('http://localhost:3001/foobar');
+console.log(promise2);
+
 const App = () => {
 	const course = {
 		name: 'Half Stack application development',
