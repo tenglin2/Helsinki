@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	box-sizing: inherit;
+}
+
+:root {
+	font-size: 62.5%;
+	padding: 2rem;
+	background-color: teal;
+	box-sizing: border-box;
+	border: .4rem solid black;
+	height: 100%;
+}
+
+body {
+	font-size: 2rem;
+	padding: 1rem;
+	background-color: aquamarine;
+	box-sizing: border-box;
+	border: .4rem solid black;
+	height: 100%;
+}
+
+#root {
+	background-color: salmon;
+}
