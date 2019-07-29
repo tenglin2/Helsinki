@@ -2,12 +2,27 @@ import React from 'react';
 import Filter from './Filter';
 import AddContact from './AddContact';
 import NumbersList from './NumbersList';
+import axios from 'axios';
 
 const App = function() {
 	const [ persons, setPersons ] = React.useState([ { name: 'Arto Hellas', number: '040-1234567' } ]);
 	const [ newName, setNewName ] = React.useState('');
 	const [ newNumber, setNewNumber ] = React.useState('');
 	const [ filter, setFilter ] = React.useState('');
+
+	React.useEffect(function() {
+		console.log('effect runs only on initial render');
+		axios
+			.get('http://localhost:3001/persons')
+			.then((response) => {
+				console.log('response is', response);
+				console.log('response data is', response.data);
+				setPersons(response.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, []);
 
 	const handleNameChange = function(event) {
 		console.log('name change trigger');
