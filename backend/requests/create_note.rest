@@ -1,0 +1,7 @@
+post http://localhost:3001/notes
+Content-Type: application/application/json
+
+{
+  "content": "kill bill trill dillo",
+  "important": false
+}
