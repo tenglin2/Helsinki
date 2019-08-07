@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 let persons = [
@@ -24,6 +26,11 @@ let persons = [
 		name: 'John Wick',
 		number: '48234-238424',
 		id: 4
+	},
+	{
+		name: 'Captain Crunch',
+		number: '84912-8432942',
+		id: 5
 	}
 ];
 
@@ -106,7 +113,7 @@ app.post('/api/persons', function(request, response) {
 	response.json(person);
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, function() {
 	console.log(`App started on port ${PORT}`);
