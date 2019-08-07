@@ -15,7 +15,7 @@ const App = function() {
 	React.useEffect(function() {
 		console.log('effect runs only on initial render');
 		axios
-			.get('http://localhost:3001/persons')
+			.get('http://localhost:3001/api/persons')
 			.then((response) => {
 				console.log('response is', response);
 				console.log('response data is', response.data);
@@ -55,12 +55,12 @@ const App = function() {
 				if (window.confirm(`${newName} is already in phonebook, do you want to update the phonenumber?`)) {
 					let id = persons[i].id;
 					axios
-						.put(`http://localhost:3001/persons/${id}`, { ...persons[i], number: newNumber })
+						.put(`http://localhost:3001/api/persons/${id}`, { ...persons[i], number: newNumber })
 						.then((response) => {
 							console.log('the put request response is', response);
 							console.log('doing a get request to update the numbers list');
 							axios
-								.get('http://localhost:3001/persons')
+								.get('http://localhost:3001/api/persons')
 								.then((response) => {
 									console.log('response is', response);
 									console.log('response data is', response.data);
@@ -96,7 +96,7 @@ const App = function() {
 
 		// We want to make a post request to the backend database that hardcodes the values. That means we need to change the db file.
 		axios
-			.post('http://localhost:3001/persons', nameObject)
+			.post('http://localhost:3001/api/persons', nameObject)
 			.then((response) => {
 				console.log('response data is', response.data);
 				// Does the db json file mutate automatically?
@@ -104,7 +104,7 @@ const App = function() {
 				// Here we are attemping to update the state using a get request synchronously after the post request. This should solve the undefined id problem.
 				console.log('attempting to solve id problem');
 				axios
-					.get('http://localhost:3001/persons')
+					.get('http://localhost:3001/api/persons')
 					.then((response) => {
 						console.log('response is', response);
 						console.log('response data is', response.data);
@@ -129,13 +129,13 @@ const App = function() {
 
 		if (window.confirm('Are you sure you want to delete this fucker?')) {
 			axios
-				.delete(`http://localhost:3001/persons/${id}`)
+				.delete(`http://localhost:3001/api/persons/${id}`)
 				.then((response) => {
 					console.log('delete response is', response);
 					// Do the get request after deleting synchronously...
 					console.log('now try the get request to update and trigger state change');
 					axios
-						.get('http://localhost:3001/persons')
+						.get('http://localhost:3001/api/persons')
 						.then((response) => {
 							console.log('response is', response);
 							console.log('response data is', response.data);
@@ -153,7 +153,7 @@ const App = function() {
 					// Okay so the reasons I can't get a reference to the name for the error message is because it doesn't exist in the DB anymore. Which means I would have to somehow manipulate the dom element somehow and not the backend because it doesn't exist.
 					// Solution to this could be getting the name before the deletion step!!!
 					axios
-						.get('http://localhost:3001/persons')
+						.get('http://localhost:3001/api/persons')
 						.then((response) => {
 							console.log('resposne data is', response.data);
 							name = response.data[id].name;
