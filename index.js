@@ -1,14 +1,38 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const app = express();
+// const password = require('./credentials.js');
+const Person = require('./models/person');
 
 app.use(cors());
 app.use(bodyParser.json());
 
 // Use this to check the static front end stuff first.
 app.use(express.static('build'));
+
+// const url = `mongodb+srv://wilson:${password}@cluster0-easdm.mongodb.net/note-app?retryWrites=true&w=majority`;
+
+// mongoose.connect(url, {
+// 	useNewUrlParser: true
+// });
+
+// const personSchema = new mongoose.Schema({
+// 	name: String,
+// 	number: String
+// });
+
+// personSchema.set('toJSON', {
+// 	transform: (document, returnedObject) => {
+// 		returnedObject.id = returnedObject._id.toString();
+// 		delete returnedObject._id;
+// 		delete returnedObject.__v;
+// 	}
+// });
+
+// const Person = mongoose.model('Person', personSchema);
 
 let persons = [
 	{
@@ -55,22 +79,33 @@ app.get('/', function(request, response) {
 });
 
 app.get('/api/persons', function(request, response) {
-	response.json(persons);
+	// Here is the hardcoded data...
+	// response.json(persons);
+
+	// Instead we get the data from the mongo database.
+	Person.find({}).then((persons) => {
+		// We should expect an array of persons with only two I believe.
+		response.json(persons.map((person) => person.toJSON()));
+	});
 });
 
 // Getting a single entry means we need to find based on id and return a 404 error if not found
 app.get('/api/persons/:id', function(request, response) {
-	const id = Number(request.params.id);
+	// const id = Number(request.params.id);
 
-	const person = persons.find((person) => {
-		return person.id === id;
+	// const person = persons.find((person) => {
+	// 	return person.id === id;
+	// });
+
+	// if (person) {
+	// 	response.json(person);
+	// } else {
+	// 	response.status(404).end('not found error');
+	// }
+
+	Person.findById(request.params.id).then((person) => {
+		response.json(person.toJSON());
 	});
-
-	if (person) {
-		response.json(person);
-	} else {
-		response.status(404).end('not found error');
-	}
 });
 
 app.get('/info', function(request, response) {
@@ -97,11 +132,11 @@ app.post('/api/persons', function(request, response) {
 
 	console.log('body is', body);
 
-	const person = {
-		id: id,
-		name: body.name,
-		number: body.number
-	};
+	// const person = {
+	// 	id: id,
+	// 	name: body.name,
+	// 	number: body.number
+	// };
 
 	if (!body.name || !body.number) {
 		return response.status(400).end('empty name or number');
@@ -112,9 +147,19 @@ app.post('/api/persons', function(request, response) {
 	// 	response.status(400).end('duplicate data');
 	// }
 
-	persons = persons.concat(person);
+	// persons = persons.concat(person);
 
-	response.json(person);
+	// response.json(person);
+
+	const person = new Person({
+		name: body.name,
+		number: body.number,
+		id: id
+	});
+
+	person.save().then((savedPerson) => {
+		response.json(savedPerson.toJSON);
+	});
 });
 
 const PORT = process.env.PORT || 3001;
