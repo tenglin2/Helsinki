@@ -11,7 +11,7 @@ if (process.argv.length < 3) {
 const password = process.argv[2];
 
 // We expect the password to be given in the terminal by the user.
-const url = `mongodb+srv://wilson:${password}@cluster0-easdm.mongodb.net/note-app?retryWrites=true&w=majority`;
+const url = `mongodb+srv://wilson:${password}@cluster0-easdm.mongodb.net/phonebook?retryWrites=true&w=majority`;
 
 // Actually connecting ot the database using the URL.
 mongoose.connect(url, {
