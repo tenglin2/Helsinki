@@ -1,0 +1,33 @@
+.App {
+	border: .5rem dashed black;
+	text-align: center;
+}
+
+.header {
+	text-transform: capitalize;
+}
+
+.button {
+	border: .3rem solid black;
+	background-color: white;
+	margin: 2rem;
+	padding: 1rem;
+	width: 10rem;
+}
+
+.good {
+	background-color: green;
+}
+
+.neutral {
+	background-color: skyblue;
+}
+
+.bad {
+	background-color: red;
+}
+
+.App > h3 {
+	background-color: white;
+	margin: 1rem;
+}

@@ -1,0 +1,8 @@
+.Statistics {
+	margin-top: 2rem;
+}
+
+.Statistics > h3 {
+	background-color: salmon;
+	margin: 2rem;
+}
