@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 
 const url = process.env.MONGODB_URI;
 
-console.log('connecting to', url);
+console.log('flag testing');
+console.log('connecting to', url, typeof url);
 
 mongoose
-	.connect(url, {
+	.connect(url.toString(), {
 		useNewUrlParser: true
 	})
 	.then((result) => {
