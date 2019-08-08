@@ -6,6 +6,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Use this to check the static front end stuff first.
+app.use(express.static('build'));
+
 let persons = [
 	{
 		name: 'Arto Hellas',

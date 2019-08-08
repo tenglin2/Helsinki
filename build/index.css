@@ -1,0 +1,34 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	box-sizing: inherit;
+}
+
+:root {
+	font-size: 62.5%;
+	box-sizing: border-box;
+	background-color: salmon;
+	padding: 2rem;
+	border: .3rem solid black;
+	height: 100%;
+}
+
+body {
+	font-size: 2rem;
+	box-sizing: border-box;
+	background-color: blanchedalmond;
+	padding: 1rem;
+	border: .3rem solid black;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+#root {
+	background-color: green;
+	border: .5rem dashed black;
+	width: 85%;
+}
